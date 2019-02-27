@@ -72,7 +72,7 @@ describe("Solhint plugin", function() {
       };
       await writeJson(SOLHINT_CONFIG_FILENAME, invalidExtensionConfig);
 
-      expectErrorAsync(
+      await expectErrorAsync(
         () => this.env.run("solhint"),
         "Failed to apply the extensions"
       );
@@ -86,7 +86,7 @@ describe("Solhint plugin", function() {
       };
       await writeJson(SOLHINT_CONFIG_FILENAME, invalidRuleConfig);
 
-      expectErrorAsync(
+      await expectErrorAsync(
         () => this.env.run("solhint"),
         "Failed to apply the extensions"
       );
