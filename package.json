@@ -1,8 +1,8 @@
 {
   "name": "@nomiclabs/buidler-solhint",
   "version": "0.0.1",
-  "description": "Buidler TypeScript plugin boilerplate",
-  "repository": "github:nomiclabs/buidler-ts-plugin-boilerplate",
+  "description": "Buidler plugin for solhint",
+  "repository": "github:nomiclabs/buidler-solhint",
   "author": "Nomic Labs SRL",
   "license": "MIT",
   "main": "dist/src/index.js",

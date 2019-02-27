@@ -55,5 +55,3 @@ task("check", async (_, { config, run }) => {
 
   printReport(reports);
 });
-
-extendEnvironment((env: BuidlerRuntimeEnvironment) => {});
