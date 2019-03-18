@@ -2,9 +2,9 @@
  [![Build Status](https://travis-ci.com/nomiclabs/buidler-solhint.svg?branch=master)](https://travis-ci.com/nomiclabs/buidler-solhint)
 
 
- # buidler-solpp	
+	
  
- # buidler-solpp
+ # buidler-solhint
 [Buidler](http://getbuidler.com) plugin for integration with [solhint linter](https://github.com/protofire/solhint).
 
  ## What
