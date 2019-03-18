@@ -135,7 +135,7 @@ describe("Solhint plugin", function() {
       );
     });
 
-    it.only("should throw when using a non parsable config", async function() {
+    it("should throw when using a non parsable config", async function() {
       const invalidConfig = "asd";
       await writeFile(SOLHINT_CONFIG_FILENAME, invalidConfig);
       await expectErrorAsync(
