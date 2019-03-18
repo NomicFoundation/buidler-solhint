@@ -48,7 +48,8 @@ async function getSolhintConfig(rootDirectory: string) {
       solhintConfig = await loadConfig();
     } catch (err) {
       throw new BuidlerPluginError(
-        "An error occurred when loading your solhint config."
+        "An error occurred when loading your solhint config.",
+        err
       );
     }
   } else {
@@ -59,7 +60,8 @@ async function getSolhintConfig(rootDirectory: string) {
     solhintConfig = applyExtends(solhintConfig);
   } catch (err) {
     throw new BuidlerPluginError(
-      "An error occurred when processing your solhint config."
+      "An error occurred when processing your solhint config.",
+      err
     );
   }
 
