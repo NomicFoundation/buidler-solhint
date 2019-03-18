@@ -71,14 +71,14 @@ function printReport(reports: any) {
   console.log(formatter(reports));
 }
 
-internalTask("buidler-solhint:run-solhint", async (_, { config, run }) => {
+internalTask("buidler-solhint:run-solhint", async (_, { config }) => {
   return processPath(
     config.paths.sources + "/**/*.sol",
     await getSolhintConfig(config.paths.root)
   );
 });
 
-task("check", async (_, { config, run }) => {
+task("check", async (_, { run }) => {
   const reports = await run("buidler-solhint:run-solhint");
 
   printReport(reports);
