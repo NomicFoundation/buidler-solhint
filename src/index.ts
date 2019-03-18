@@ -78,7 +78,9 @@ internalTask("buidler-solhint:run-solhint", async (_, { config }) => {
   );
 });
 
-task("check", async (_, { run }) => {
+task("check", async (_, { run }, runSuper) => {
+  await runSuper();
+
   const reports = await run("buidler-solhint:run-solhint");
 
   printReport(reports);
