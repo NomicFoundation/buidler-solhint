@@ -1,9 +1,6 @@
 import { internalTask, task } from "@nomiclabs/buidler/config";
 import { BuidlerPluginError } from "@nomiclabs/buidler/internal/core/errors";
-import { existsSync } from "fs";
 import { join } from "path";
-import { applyExtends, loadConfig } from "solhint/lib/config/config-file";
-import { processPath } from "solhint/lib/index";
 
 function getDefaultConfig() {
   return {
@@ -22,7 +19,7 @@ function getFormatter(formatterName = "stylish") {
   }
 }
 
-function hasConfigFile(rootDirectory: string) {
+async function hasConfigFile(rootDirectory: string) {
   const files = [
     ".solhint.json",
     ".solhintrc",
@@ -33,8 +30,9 @@ function hasConfigFile(rootDirectory: string) {
     "solhint.config.js"
   ];
 
+  const fs = await import("fs");
   for (const file of files) {
-    if (existsSync(join(rootDirectory, file))) {
+    if (fs.existsSync(join(rootDirectory, file))) {
       return true;
     }
   }
@@ -43,7 +41,11 @@ function hasConfigFile(rootDirectory: string) {
 
 async function getSolhintConfig(rootDirectory: string) {
   let solhintConfig;
-  if (hasConfigFile(rootDirectory)) {
+  const {
+    loadConfig,
+    applyExtends
+  } = await import("solhint/lib/config/config-file");
+  if (await hasConfigFile(rootDirectory)) {
     try {
       solhintConfig = await loadConfig();
     } catch (err) {
@@ -74,6 +76,7 @@ function printReport(reports: any) {
 }
 
 internalTask("buidler-solhint:run-solhint", async (_, { config }) => {
+  const { processPath } = await import("solhint/lib/index");
   return processPath(
     config.paths.sources + "/**/*.sol",
     await getSolhintConfig(config.paths.root)
